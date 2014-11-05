@@ -18,44 +18,13 @@
 
     Parse.initialize("uqtak0NIPXo9p6YhxGsJsWc8KuY1nRWuXdftHHTj", "ekid6tq3RgD2i1lHMePpsFSobHawbFIH1NuUNrde");
 
-	/*
-	function getRestaurantes() {
-		var xmlhttp;    
-		if (window.XMLHttpRequest) {
-			xmlhttp=new XMLHttpRequest();
-		} else {
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					document.getElementById("restaurantes").innerHTML=xmlhttp.responseText;                   
-				}
-		}
-			
-		xmlhttp.open("GET","restaurantes.html", true);			
-
-		xmlhttp.send();
-
-	}
-	*/
-
 	function getRestaurantes() {
 
-		var locais = Parse.Object.extend("Local");
-		var query = new Parse.Query(locais);
-		query.equalTo("codSegmento", "1");
-
-		query.find({
-
-			success: function(results) {    
-			
+		Parse.Cloud.run('getRestaurantes', {}, {
+		  	success: function(results) {
 				var htmlRestaurante = "";
 				
 				for (var i = 0; i < results.length; i++) { 
-					
-					if (i == 1) {
-						//break;
-					}
 
 					var local = results[i];
 
@@ -82,20 +51,35 @@
 					htmlRestaurante += "</a>";
 				}
 
-				document.getElementById("restaurantes").innerHTML = htmlRestaurante;
-
-			},
-			error: function(error) {
-				alert("Erro ao obter lista de Restaurantes: " 
-					+ error.code + " " + error.message);
-			}
-
-		});	
-
-
+				document.getElementById("restaurantes").innerHTML = htmlRestaurante;	
+		  	},
+		  	error: function(error) {
+		  	}
+		});
 
 
 	}
+
+	/*
+	function getRestaurantes() {
+		var xmlhttp;    
+		if (window.XMLHttpRequest) {
+			xmlhttp=new XMLHttpRequest();
+		} else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("restaurantes").innerHTML=xmlhttp.responseText;                   
+				}
+		}
+			
+		xmlhttp.open("GET","restaurantes.html", true);			
+
+		xmlhttp.send();
+
+	}
+	*/
 
 </script>
 
@@ -128,32 +112,6 @@
 		<div class="img-restaurante"></div>
 		
 		<div id="restaurantes"></div>
-
-		<!--
-
-		<a href="http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27">
-			<div id="logos">			
-				<div id="desconto">
-					<div id="desconto-box">
-					<div id="desconto-title"> Luxury Nail Bar</div>
-					<div id="segmento-text"> Saude / Moda e Beleza </div>
-					<div id="box-green">
-					<div id="desconto-valor">30% off</div>
-				</div>
-				<div id="box-progress">
-					<progress value="56.0" max="100"></progress>
-				</div>
-				</div>
-				<div id="info-credito">
-					<div id="calc-distancia">13.63 km</div>
-					<div id="credito-text">Créditos aqui:</div>
-					<div id="credito-valor">---</div>
-				</div>
-				</div>			
-			</div>
-		</a>
-
-		-->
 	
 		<a href="historico.jsp">
 			<div class="listar-mais">Veja mais desta lista</div>
