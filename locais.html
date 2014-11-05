@@ -1,0 +1,238 @@
+<html><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+ <title>YouBack</title>
+<link rel="shortcut icon" href="http://youback.com.br/img/yb-1.ico" type="image/x-icon">
+<link rel="icon" href="http://youback.com.br/img/yb-1.ico" type="image/x-icon">
+
+<script type="text/javascript" src="parse.js"></script>
+ 
+
+  <!-- Extra Codiqa features -->
+<link rel="stylesheet" href="style-mobile.css">
+ 
+
+<script type="text/javascript">
+
+    Parse.initialize("uqtak0NIPXo9p6YhxGsJsWc8KuY1nRWuXdftHHTj", "ekid6tq3RgD2i1lHMePpsFSobHawbFIH1NuUNrde");
+
+	/*
+	function getRestaurantes() {
+		var xmlhttp;    
+		if (window.XMLHttpRequest) {
+			xmlhttp=new XMLHttpRequest();
+		} else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("restaurantes").innerHTML=xmlhttp.responseText;                   
+				}
+		}
+			
+		xmlhttp.open("GET","restaurantes.html", true);			
+
+		xmlhttp.send();
+
+	}
+	*/
+
+	function getRestaurantes() {
+
+		var locais = Parse.Object.extend("Local");
+		var query = new Parse.Query(locais);
+		query.equalTo("codSegmento", "1");
+
+		query.find({
+
+			success: function(results) {    
+			
+				var htmlRestaurante = "";
+				
+				for (var i = 0; i < results.length; i++) { 
+					
+					if (i == 1) {
+						//break;
+					}
+
+					var local = results[i];
+
+					htmlRestaurante += "<a href=\"http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27\">";
+						htmlRestaurante += "<div id=\"logos\">";			
+							htmlRestaurante += "<div id=\"desconto\">";
+								htmlRestaurante += "<div id=\"desconto-box\">";
+								htmlRestaurante += "<div id=\"desconto-title\">" + local.get('descricao') + "</div>";
+								htmlRestaurante += "<div id=\"segmento-text\"> Saude / Moda e Beleza </div>";
+								htmlRestaurante += "<div id=\"box-green\">";
+								htmlRestaurante += "<div id=\"desconto-valor\">30% off</div>";
+							htmlRestaurante += "</div>";
+							htmlRestaurante += "<div id=\"box-progress\">";
+								htmlRestaurante += "<progress value=\"56.0\" max=\"100\"></progress>";
+							htmlRestaurante += "</div>";
+							htmlRestaurante += "</div>";
+							htmlRestaurante += "<div id=\"info-credito\">";
+								htmlRestaurante += "<div id=\"calc-distancia\">13.63 km</div>";
+								htmlRestaurante += "<div id=\"credito-text\">Créditos aqui:</div>";
+								htmlRestaurante += "<div id=\"credito-valor\">---</div>";
+							htmlRestaurante += "</div>";
+							htmlRestaurante += "</div>";			
+						htmlRestaurante += "</div>";
+					htmlRestaurante += "</a>";
+				}
+
+				document.getElementById("restaurantes").innerHTML = htmlRestaurante;
+
+			},
+			error: function(error) {
+				alert("Erro ao obter lista de Restaurantes: " 
+					+ error.code + " " + error.message);
+			}
+
+		});	
+
+
+
+
+	}
+
+</script>
+
+<style type="text/css"></style></head>
+<body onLoad="getRestaurantes()">
+
+<!-- Home -->
+<div id="tudo">
+
+    <div id="header">
+		<a href="javascript:history.back()">
+			<div id="logo">
+				<span class="setinha">‹</span><span><img id="HeaderImg" src="img/youback11.png"></span>
+			</div>
+		</a>
+        <div id="title">Comer</div>
+       
+		<a href="filtrar.jsp">
+			<div class="icon-search"></div>
+		</a>
+   		
+    </div>
+
+<div class="container">	
+<div id="locais">
+
+
+<div id="logobox">
+	<div class="segmento">Restaurantes</div>
+		<div class="img-restaurante"></div>
+		
+		<div id="restaurantes"></div>
+
+		<!--
+
+		<a href="http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27">
+			<div id="logos">			
+				<div id="desconto">
+					<div id="desconto-box">
+					<div id="desconto-title"> Luxury Nail Bar</div>
+					<div id="segmento-text"> Saude / Moda e Beleza </div>
+					<div id="box-green">
+					<div id="desconto-valor">30% off</div>
+				</div>
+				<div id="box-progress">
+					<progress value="56.0" max="100"></progress>
+				</div>
+				</div>
+				<div id="info-credito">
+					<div id="calc-distancia">13.63 km</div>
+					<div id="credito-text">Créditos aqui:</div>
+					<div id="credito-valor">---</div>
+				</div>
+				</div>			
+			</div>
+		</a>
+
+		-->
+	
+		<a href="historico.jsp">
+			<div class="listar-mais">Veja mais desta lista</div>
+		</a>
+</div>
+<div id="logobox">
+	<div class="segmento">Pizzarias</div>
+		<div class="img-pizzaria"></div>
+		<a href="http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27">
+			<div id="logos">			
+				<div id="desconto">
+					<div id="desconto-box">
+					<div id="desconto-title"> Luxury Nail Bar</div>
+					<div id="segmento-text"> Saude / Moda e Beleza </div>
+					<div id="box-green">
+					<div id="desconto-valor">30% off</div>
+				</div>
+				<div id="box-progress">
+					<progress value="80" max="100"></progress>
+				</div>
+				</div>
+				<div id="info-credito">
+					<div id="calc-distancia">13.63 km</div>
+					<div id="credito-text">Créditos aqui:</div>
+					<div id="credito-valor">---</div>
+				</div>
+				</div>			
+			</div>
+		</a>
+		<a href="http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27">
+			<div id="logos">			
+				<div id="desconto">
+					<div id="desconto-box">
+					<div id="desconto-title"> Luxury Nail Bar</div>
+					<div id="segmento-text"> Saude / Moda e Beleza </div>
+					<div id="box-green">
+					<div id="desconto-valor">30% off</div>
+				</div>
+				<div id="box-progress">
+					<progress value="10" max="100"></progress>
+				</div>
+				</div>
+				<div id="info-credito">
+					<div id="calc-distancia">13.63 km</div>
+					<div id="credito-text">Créditos aqui:</div>
+					<div id="credito-valor">---</div>
+				</div>
+				</div>			
+			</div>
+		</a>
+		<a href="http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27">
+			<div id="logos">			
+				<div id="desconto">
+					<div id="desconto-box">
+					<div id="desconto-title"> Luxury Nail Bar</div>
+					<div id="segmento-text"> Saude / Moda e Beleza </div>
+					<div id="box-green">
+					<div id="desconto-valor">30% off</div>
+				</div>
+				<div id="box-progress">
+					<progress value="20" max="100"></progress>
+				</div>
+				</div>
+				<div id="info-credito">
+					<div id="calc-distancia">13.63 km</div>
+					<div id="credito-text">Créditos aqui:</div>
+					<div id="credito-valor">---</div>
+				</div>
+				</div>			
+			</div>
+		</a>
+		<a href="historico.jsp">
+			<div class="listar-mais">Veja mais desta lista</div>
+		</a>
+</div>
+</div>	
+</div>
+<div id="footer">
+		<a href="sugestao.jsp"><div id="usar">Onde você gostaria de  pagar menos?</div></a>
+</div>
+</body>
+</html>

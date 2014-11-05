@@ -1,0 +1,44 @@
+<script type="text/javascript">		
+
+	var locais = Parse.Object.extend("Local");
+	var query = new Parse.Query(locais);
+	query.equalTo("codSegmento", "1");
+
+	query.find({
+
+		success: function(results) {    	
+			for (var i = 0; i < results.length; i++) { 
+
+				var local = results[i];
+
+				document.write("<a href=\"http://www.youback.com.br/desenvolvimento/mobile2/oferta.jsp?local=27\">");
+					document.write("<div id=\"logos\">");			
+						document.write("<div id=\"desconto\">");
+							document.write("<div id=\"desconto-box\">");
+							document.write("<div id=\"desconto-title\">" + local.get('descricao') + "</div>");
+							document.write("<div id=\"segmento-text\"> Saude / Moda e Beleza </div>");
+							document.write("<div id=\"box-green\">");
+							document.write("<div id=\"desconto-valor\">30% off</div>");
+						document.write("</div>");
+						document.write("<div id=\"box-progress\">");
+							document.write("<progress value=\"56.0\" max=\"100\"></progress>");
+						document.write("</div>");
+						document.write("</div>");
+						document.write("<div id=\"info-credito\">");
+							document.write("<div id=\"calc-distancia\">13.63 km</div>");
+							document.write("<div id=\"credito-text\">Créditos aqui:</div>");
+							document.write("<div id=\"credito-valor\">---</div>");
+						document.write("</div>");
+						document.write("</div>");			
+					document.write("</div>");
+				document.write("</a>");
+			}
+		},
+		error: function(error) {
+			alert("Erro ao obter lista de Restaurantes: " 
+				+ error.code + " " + error.message);
+		}
+
+	});	
+
+</script>
